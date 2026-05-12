@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Calorie | Калькулятор калорий</title>
+    <title>Calorie Calculator</title>
     <style>
         * {
             margin: 0;
@@ -21,25 +21,16 @@
             padding: 20px;
         }
 
-        /* главная карточка */
         .calorie-card {
             max-width: 580px;
             width: 100%;
             background: rgba(255, 248, 235, 0.97);
-            backdrop-filter: blur(2px);
             border-radius: 56px;
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 215, 175, 0.3);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
             overflow: hidden;
-            transition: transform 0.2s ease;
         }
 
-        .calorie-card:hover {
-            transform: scale(1.01);
-        }
-
-        /* шапка с энергией */
         .hero {
-            background: #f7b05e;
             background: linear-gradient(135deg, #ffb347, #ff8c1a);
             padding: 28px 24px;
             text-align: center;
@@ -50,14 +41,7 @@
             font-size: 2rem;
             font-weight: 800;
             letter-spacing: -0.5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .hero h1 span {
-            font-size: 2.2rem;
+            margin: 0;
         }
 
         .hero p {
@@ -66,12 +50,10 @@
             font-weight: 500;
         }
 
-        /* основной контент */
         .content {
             padding: 28px 28px 32px;
         }
 
-        /* группы полей */
         .input-group {
             margin-bottom: 22px;
             display: flex;
@@ -84,14 +66,6 @@
             color: #3e2a22;
             font-size: 0.9rem;
             letter-spacing: 0.3px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .input-group label i {
-            font-style: normal;
-            font-size: 1.2rem;
         }
 
         .input-field {
@@ -125,13 +99,6 @@
             cursor: pointer;
         }
 
-        .input-field span {
-            color: #b97f44;
-            font-weight: 500;
-            padding-right: 6px;
-        }
-
-        /* двойной ряд для пола и активности */
         .double-row {
             display: flex;
             gap: 18px;
@@ -143,7 +110,6 @@
             min-width: 130px;
         }
 
-        /* кнопка расчёта */
         .calc-btn {
             width: 100%;
             background: #2b5e4c;
@@ -157,10 +123,6 @@
             cursor: pointer;
             transition: all 0.25s;
             letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
             box-shadow: 0 6px 0 #1b3e32;
         }
 
@@ -173,13 +135,11 @@
             background: #3f7a64;
         }
 
-        /* результат */
         .result-panel {
             background: #f3efe7;
             border-radius: 36px;
             padding: 18px 20px;
             margin-top: 12px;
-            transition: all 0.2s;
         }
 
         .total-calories {
@@ -246,17 +206,6 @@
             border-radius: 60px;
         }
 
-        .error-message {
-            color: #c0392b;
-            background: #ffe6e2;
-            border-radius: 60px;
-            padding: 8px 12px;
-            text-align: center;
-            font-size: 0.8rem;
-            margin-top: 10px;
-            font-weight: 500;
-        }
-
         footer {
             font-size: 0.7rem;
             text-align: center;
@@ -282,25 +231,22 @@
 <body>
 <div class="calorie-card">
     <div class="hero">
-        <h1>
-            <span>🔥</span> CalorieFuel
-        </h1>
-        <p>Твой персональный баланс энергии</p>
+        <h1>CalorieFuel</h1>
+        <p>Your personal energy balance</p>
     </div>
     <div class="content">
-        <!-- Параметры пользователя -->
         <div class="double-row">
             <div class="input-group">
-                <label><i>🧑</i> Пол</label>
+                <label>Gender</label>
                 <div class="input-field">
                     <select id="gender">
-                        <option value="female">Женщина</option>
-                        <option value="male" selected>Мужчина</option>
+                        <option value="female">Female</option>
+                        <option value="male" selected>Male</option>
                     </select>
                 </div>
             </div>
             <div class="input-group">
-                <label><i>📏</i> Возраст (лет)</label>
+                <label>Age (years)</label>
                 <div class="input-field">
                     <input type="number" id="age" placeholder="25" value="28" step="1" min="15" max="120">
                 </div>
@@ -309,70 +255,66 @@
 
         <div class="double-row">
             <div class="input-group">
-                <label><i>⚖️</i> Вес (кг)</label>
+                <label>Weight (kg)</label>
                 <div class="input-field">
                     <input type="number" id="weight" placeholder="70" value="70" step="0.5" min="20" max="300">
                 </div>
             </div>
             <div class="input-group">
-                <label><i>📏</i> Рост (см)</label>
+                <label>Height (cm)</label>
                 <div class="input-field">
                     <input type="number" id="height" placeholder="170" value="170" step="1" min="100" max="250">
                 </div>
             </div>
         </div>
 
-        <!-- Уровень активности -->
         <div class="input-group">
-            <label><i>🏃‍♂️</i> Физическая активность</label>
+            <label>Physical Activity</label>
             <div class="input-field">
                 <select id="activity">
-                    <option value="1.2">Минимальная (сидячий образ жизни)</option>
-                    <option value="1.375">Лёгкая (1-3 тренировки в неделю)</option>
-                    <option value="1.55" selected>Умеренная (3-5 тренировок)</option>
-                    <option value="1.725">Высокая (6-7 тренировок)</option>
-                    <option value="1.9">Экстремальная (физическая работа + спорт)</option>
+                    <option value="1.2">Minimal (sedentary lifestyle)</option>
+                    <option value="1.375">Light (1-3 workouts per week)</option>
+                    <option value="1.55" selected>Moderate (3-5 workouts)</option>
+                    <option value="1.725">High (6-7 workouts)</option>
+                    <option value="1.9">Extreme (physical work + sports)</option>
                 </select>
             </div>
         </div>
 
-        <!-- Кнопка расчёта -->
         <button class="calc-btn" id="calculateBtn">
-            <span>✨</span> Рассчитать суточную норму
+            Calculate Daily Norm
         </button>
 
-        <!-- Блок результатов -->
         <div id="resultContainer">
             <div class="result-panel">
                 <div class="total-calories">
-                    <div class="label">ТВОЯ ДНЕВНАЯ НОРМА</div>
+                    <div class="label">YOUR DAILY NORM</div>
                     <div class="kcal-number" id="kcalDisplay">—</div>
-                    <div style="font-size: 0.8rem; font-weight: 500;">ккал / день</div>
+                    <div style="font-size: 0.8rem; font-weight: 500;">kcal / day</div>
                 </div>
                 <div class="breakdown" id="breakdownInfo">
                     <div class="breakdown-item">
-                        <span>⚡ Базовый метаболизм (BMR)</span>
+                        <span>Basal Metabolic Rate (BMR)</span>
                         <div class="value" id="bmrValue">—</div>
                     </div>
                     <div class="breakdown-item">
-                        <span>🏋️‍♂️ С учётом активности</span>
+                        <span>With Activity (TDEE)</span>
                         <div class="value" id="tdeeValue">—</div>
                     </div>
                 </div>
                 <div class="info-message" id="adviceMessage">
-                    Заполните данные и нажмите «Рассчитать»
+                    Fill in the data and click "Calculate"
                 </div>
             </div>
         </div>
     </div>
     <footer>
-        🍎 Формула Миффлина — Сан-Жеора | Индивидуальный подход к здоровому питанию
+        Mifflin-St Jeor Formula | Individual approach to healthy nutrition
     </footer>
 </div>
 
 <script>
     (function() {
-        // DOM элементы
         const genderSelect = document.getElementById('gender');
         const ageInput = document.getElementById('age');
         const weightInput = document.getElementById('weight');
@@ -380,27 +322,24 @@
         const activitySelect = document.getElementById('activity');
         const calculateBtn = document.getElementById('calculateBtn');
 
-        // Элементы вывода
         const kcalDisplay = document.getElementById('kcalDisplay');
         const bmrValueSpan = document.getElementById('bmrValue');
         const tdeeValueSpan = document.getElementById('tdeeValue');
         const adviceMessage = document.getElementById('adviceMessage');
 
-        // Функция для показа ошибки (кратковременной в блоке советов, но не затирает полностью)
         function showError(text) {
-            adviceMessage.innerHTML = `⚠️ ${text}`;
+            adviceMessage.innerHTML = text;
             adviceMessage.style.background = "#ffe0db";
             adviceMessage.style.color = "#bc3900";
-            // через 3 секунды вернуть нейтральный совет, если снова не будет пересчёта
             setTimeout(() => {
-                if (adviceMessage.innerHTML.includes("⚠️")) {
+                if (adviceMessage.innerHTML === text) {
                     const currentCal = kcalDisplay.innerText;
                     if (currentCal !== '—' && !isNaN(parseFloat(currentCal))) {
-                        adviceMessage.innerHTML = '🥗 Отличная цель! Придерживайся диапазона для баланса.';
+                        adviceMessage.innerHTML = 'Great goal! Stick to the range for balance.';
                         adviceMessage.style.background = "#fff3e6";
                         adviceMessage.style.color = "#9b7b5e";
                     } else {
-                        adviceMessage.innerHTML = 'Заполните данные и нажмите «Рассчитать»';
+                        adviceMessage.innerHTML = 'Fill in the data and click "Calculate"';
                         adviceMessage.style.background = "#fff3e6";
                         adviceMessage.style.color = "#9b7b5e";
                     }
@@ -408,37 +347,32 @@
             }, 3200);
         }
 
-        // Функция валидации полей
         function validateInputs() {
             let age = parseFloat(ageInput.value);
             let weight = parseFloat(weightInput.value);
             let height = parseFloat(heightInput.value);
 
-            // Проверки на NaN и разумные пределы
             if (isNaN(age) || age < 15 || age > 120) {
-                showError('Возраст должен быть от 15 до 120 лет');
+                showError('Age must be between 15 and 120 years');
                 return null;
             }
             if (isNaN(weight) || weight < 20 || weight > 300) {
-                showError('Вес должен быть от 20 до 300 кг');
+                showError('Weight must be between 20 and 300 kg');
                 return null;
             }
             if (isNaN(height) || height < 100 || height > 250) {
-                showError('Рост должен быть от 100 до 250 см');
+                showError('Height must be between 100 and 250 cm');
                 return null;
             }
             return { age, weight, height };
         }
 
-        // Главная логика расчёта: Mifflin-St Jeor
         function calculateCalories() {
-            // Сброс стилей ошибки, если предыдущее сообщение было ошибкой
             adviceMessage.style.background = "#fff3e6";
             adviceMessage.style.color = "#9b7b5e";
             
             const validData = validateInputs();
             if (!validData) {
-                // сбросить значения результата, потому что данные невалидны
                 kcalDisplay.innerText = '—';
                 bmrValueSpan.innerText = '—';
                 tdeeValueSpan.innerText = '—';
@@ -446,10 +380,9 @@
             }
 
             const { age, weight, height } = validData;
-            const gender = genderSelect.value; // 'male' или 'female'
+            const gender = genderSelect.value;
             const activityFactor = parseFloat(activitySelect.value);
 
-            // Формула Миффлина-Сан-Жеора
             let bmr;
             if (gender === 'male') {
                 bmr = 10 * weight + 6.25 * height - 5 * age + 5;
@@ -457,64 +390,54 @@
                 bmr = 10 * weight + 6.25 * height - 5 * age - 161;
             }
 
-            // Округляем BMR до целого
             bmr = Math.round(bmr);
-            // TDEE (дневная норма с активностью)
             let tdee = Math.round(bmr * activityFactor);
 
-            // Функция для красивого форматирования чисел с разделением тысяч (по желанию)
-            const formatNumber = (num) => num.toLocaleString('ru-RU');
+            const formatNumber = (num) => num.toLocaleString('en-US');
 
-            // Обновляем интерфейс
             kcalDisplay.innerText = formatNumber(tdee);
-            bmrValueSpan.innerText = formatNumber(bmr) + ' ккал';
-            tdeeValueSpan.innerText = formatNumber(tdee) + ' ккал';
+            bmrValueSpan.innerText = formatNumber(bmr) + ' kcal';
+            tdeeValueSpan.innerText = formatNumber(tdee) + ' kcal';
 
-            // Дружественный совет в зависимости от цели (поддержание, похудение, набор)
             const forWeightLoss = Math.round(tdee - 300);
             const forWeightGain = Math.round(tdee + 300);
             
             let customAdvice = '';
-            const targetWeight = weight; // текущий вес для подсказки
             
-            if (targetWeight < 60 && gender === 'female' && height < 165) customAdvice = '💪 Твой метаболизм активен. Для качественного набора мышц добавь 200-300 ккал.';
-            else if (targetWeight > 90) customAdvice = '🥑 Чтобы мягко снижать вес, попробуй придерживаться ~' + forWeightLoss + ' ккал.';
-            else if (targetWeight > 75 && gender === 'male') customAdvice = '🏋️‍♂️ Для жиросжигания рекомендовано ' + forWeightLoss + ' – ' + tdee + ' ккал, сохраняя белок.';
-            else customAdvice = '✨ Поддержание: ' + tdee + ' ккал. Для похудения ≈' + forWeightLoss + ' ккал, для набора ≈' + forWeightGain + ' ккал.';
-
-            // Добавляем акцент на активности если выбрана высокая нагрузка
-            if (activityFactor >= 1.725) {
-                customAdvice += ' 🔥 У тебя высокая активность — не забывай восполнять энергию углеводами.';
-            } else if (activityFactor <= 1.2) {
-                customAdvice += ' 🧘‍♀️ При сидячем режиме старайся увеличить NEAT-активность (прогулки).';
+            if (weight < 60 && gender === 'female' && height < 165) {
+                customAdvice = 'Your metabolism is active. For quality muscle gain, add 200-300 kcal.';
+            } else if (weight > 90) {
+                customAdvice = 'To gently lose weight, try to stick to ~' + forWeightLoss + ' kcal.';
+            } else if (weight > 75 && gender === 'male') {
+                customAdvice = 'For fat burning, ' + forWeightLoss + ' – ' + tdee + ' kcal is recommended, maintaining protein.';
+            } else {
+                customAdvice = 'Maintenance: ' + tdee + ' kcal. For weight loss ≈' + forWeightLoss + ' kcal, for weight gain ≈' + forWeightGain + ' kcal.';
             }
 
-            adviceMessage.innerHTML = '📌 ' + customAdvice;
+            if (activityFactor >= 1.725) {
+                customAdvice += ' You have high activity - do not forget to replenish energy with carbohydrates.';
+            } else if (activityFactor <= 1.2) {
+                customAdvice += ' With a sedentary lifestyle, try to increase NEAT activity (walks).';
+            }
+
+            adviceMessage.innerHTML = customAdvice;
         }
 
-        // Дополнительная функция для автоматического обновления при изменении полей (опционально)
-        // Сделаем live-расчёт при изменении любого поля, чтобы было интерактивно.
-        // Но приоритет — кнопка; также пересчёт при любом изменении данных.
         function tryAutoCalculate() {
-            // но не спамим ошибками, если невалидно — пока не обновляем результаты, но пересчитываем только когда валидно
             const validData = validateInputs();
             if (!validData) {
-                // Если невалидно, то просто не обновляем результат, но и не показываем ложные цифры.
-                // Однако если уже есть какие-то предыдущие цифры, имеет смысл очистить чтобы не вводить в заблуждение
                 if(kcalDisplay.innerText !== '—') {
                     kcalDisplay.innerText = '—';
                     bmrValueSpan.innerText = '—';
                     tdeeValueSpan.innerText = '—';
-                    adviceMessage.innerHTML = '⚠️ Исправьте значения (возраст, вес или рост)';
+                    adviceMessage.innerHTML = 'Fix values (age, weight or height)';
                     adviceMessage.style.background = "#ffe0db";
                 }
                 return;
             }
-            // Если валидно - проводим полноценный расчёт
             calculateCalories();
         }
 
-        // Привязываем обработчики событий для интерактивности (авто расчет после изменений)
         const inputsList = [genderSelect, ageInput, weightInput, heightInput, activitySelect];
         inputsList.forEach(input => {
             input.addEventListener('change', () => {
@@ -527,10 +450,8 @@
             }
         });
 
-        // Кнопка тоже выполняет полный расчёт с валидацией и сбросом стилей
         calculateBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            // перед расчётом принудительно парсим и валидируем (очистим сообщения ошибок)
             const valid = validateInputs();
             if(!valid) {
                 kcalDisplay.innerText = '—';
@@ -539,13 +460,10 @@
                 return;
             }
             calculateCalories();
-            // Небольшая вибрация кнопки для фидбека (чисто визуальная)
             calculateBtn.style.transform = 'scale(0.98)';
             setTimeout(() => { calculateBtn.style.transform = ''; }, 120);
         });
 
-        // Инициализация: при загрузке страницы сразу посчитаем с дефолтными значениями (вес 70, рост 170, пол мужчина, возраст 28)
-        // Имитируем стартовый расчёт
         setTimeout(() => {
             tryAutoCalculate();
         }, 10);
